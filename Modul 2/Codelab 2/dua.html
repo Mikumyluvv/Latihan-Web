@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TES</title>
+  <style>
+    body {
+      background-color: rgb(47, 185, 77);
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    }
+
+    .form-container {
+      background-color: white;
+      width: 250px;
+      padding: 9px;
+      margin: 120px auto;
+      border-radius: 50px;
+      text-align: center;
+    }
+
+    .form-container input {
+      width: 80%;
+      padding: 11px 20px;
+      /* margin: 8px 0; */
+      box-sizing: border-box;
+      border-style: solid;
+      border-radius: 10px;
+    }   
+
+    .form-container button {
+      background-color: rgb(0, 255, 55);
+      color: rgba(215, 132, 132, 0.97);
+      padding: 12px 20px;
+      border-radius: 10px;
+      
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container">
+    <form id="Form">
+      <label for="Name">Name:</label><br>
+      <input type="text" id="Name" name="Name"><br>
+      <label for="Mail">Email:</label><br>
+      <input type="email" id="Mail" name="Mail"><br>
+      <label for="Addres">Addres:</label><br>
+      <input type="text" id="Addres" name="Addres"><br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('Form').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var Name = document.getElementById('Name').value;
+      var Mail = document.getElementById('Mail').value;
+      var Addres = document.getElementById('Addres').value;
+
+      if (Name === '' || Mail === '' || Addres === '') {
+        alert("Harus diisi");
+      } else {
+        alert('Nama Lengkap: ' + Name + '\n\nEmail: ' + Mail + '\n\nAlamat: ' + Addres);
+      }
+    });
+  </script>
+</body>
+
+</html>

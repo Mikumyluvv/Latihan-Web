@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TES</title>
+</head>
+
+<body>
+  <h1>Pnjumlahan</h1>
+  <main>
+    <section>
+      <label for="Satu">Satu:</label>
+      <input type="text" id="Satu" name="Satu">
+    </section>
+    <span>+</span>
+    <section>
+      <label for="Dua">Dua:</label>
+      <input type="text" id="Dua" name="Dua">
+    </section>
+  </main>
+  <button onclick="jumlahkan()">Jumlahkan</button>
+  <button onclick="reloadPage()">Ulangi</button>
+
+  <script>
+    function jumlahkan() {
+      const Satu = document.getElementById('Satu').value;
+      const Dua = document.getElementById('Dua').value;
+      if (Satu === '' || Dua === '') {
+        alert("Wajib diisi");
+      } else {
+        var hasil = parseFloat(Satu) + parseFloat(Dua);
+        alert(hasil);
+      }
+    }
+    function reloadPage() {
+      location.reload();
+    }
+
+  </script>
+</body>
+
+</html>
