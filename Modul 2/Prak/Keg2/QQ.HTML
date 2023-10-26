@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <title>To-Do List App</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Activity</h1>
+        <div>
+            <input type="text" id="activityInput" placeholder="Enter your activity">
+            <button onclick="addActivity()">Add</button>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Activity List</h1>
+        <ul id="activityList">
+            <!-- Aktivitas akan ditambahkan di sini -->
+        </ul>
+    </div>
+
+    <script>
+        function addActivity() {
+            const activityInput = document.getElementById('activityInput');
+            const activityList = document.getElementById('activityList');
+
+            if (activityInput.value.trim() !== '') {
+                // Membuat elemen list
+                const listItem = document.createElement('li');
+
+                // Checkbox
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+
+                // Text aktivitas
+                const text = document.createTextNode(activityInput.value);
+
+                // Tombol hapus
+                const deleteButton = document.createElement('button');
+                deleteButton.innerHTML = 'Delete';
+                deleteButton.onclick = function() {
+                    activityList.removeChild(listItem);
+                };
+
+                // Menggabungkan semua elemen
+                listItem.appendChild(checkbox);
+                listItem.appendChild(text);
+                listItem.appendChild(deleteButton);
+
+                // Menambahkan elemen list ke daftar aktivitas
+                activityList.appendChild(listItem);
+
+                // Reset input
+                activityInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>

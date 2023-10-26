@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+
+    <style>
+        /* Styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 110%;
+            max-width: 400px;
+            margin: 0 1rem;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 1rem;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 0.5rem;
+            margin: 1rem 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+
+        table {
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+<div class="card-container">
+    <div class="card aktivitas">
+        <h5 class="card-header" style="background-color: #007bff;">Add Activities</h5>
+        <input
+            type="text"
+            id="tugas"
+            placeholder="Tambahkan tugas"
+        />
+        <button class="btn btn-success" onclick="tambahTugas()">
+            Tambah
+        </button>
+    </div>
+
+    <div class="card aktivitas">
+        <h5 class="card-header" style="background-color: #cce5ff;">List Activities</h5>
+        <table>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function tambahTugas() {
+        var addactivity = document.getElementById("tugas").value;
+        var bodyTable = document.getElementById("tableBody");
+
+        if (addactivity) {
+            // Menambahkan <tr> pada <tbody>
+            var row = bodyTable.insertRow();
+
+            // Menambahkan <td> pada <tr>
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+
+            cell1.textContent = addactivity;
+
+            var tombolEdit = document.createElement("button");
+            tombolEdit.textContent = "Edit";
+            // tombolEdit.classList.add("button");
+            tombolEdit.onclick = function () {
+                editTugas(cell1, cell2, tombolEdit);
+            };
+
+            var tombolHapus = document.createElement("button");
+            tombolHapus.textContent = "Hapus";
+            // tombolHapus.classList.add("button");
+            tombolHapus.onclick = function () {
+                var currentRow = this.parentNode.parentNode;
+                currentRow.parentNode.removeChild(currentRow);
+            };
+
+            cell2.appendChild(tombolEdit);
+            cell3.appendChild(tombolHapus);
+
+            document.getElementById("tugas").value = "";
+        } else {
+            alert("Masukkan nama aktivitas terlebih dahulu!");
+        }
+    }
+
+    function editTugas(cell, editCell, editButton) {
+        var editedText = cell.textContent;
+
+
+        cell.textContent = "";
+
+
+        var inputEdit = document.createElement("input");
+        inputEdit.type = "text";
+        inputEdit.value = editedText;
+        cell.appendChild(inputEdit);
+
+
+        var tombolSimpan = document.createElement("button");
+        tombolSimpan.textContent = "Simpan";
+
+        tombolSimpan.onclick = function () {
+            editedText = inputEdit.value;
+            cell.textContent = editedText;
+
+            editCell.removeChild(tombolSimpan);
+            editButton.style.display = "block";
+        };
+
+        editCell.appendChild(tombolSimpan);
+        editButton.style.display = "none";
+    }
+</script>
+</body>
+</html>
